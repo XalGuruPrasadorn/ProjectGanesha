@@ -31,7 +31,7 @@ class GridTradingBot:
         self.grid_levels = self.create_grid_levels()
         self.placed_orders = {}  # Changed to dictionary
         self.current_price = None
-        self.strategy_name = input("Enter the strategy name: ")
+        self.strategy_name = "Reliance Strategy"
         self.state_file = f"{self.strategy_name.replace(' ', '_')}_state.json"
         self.load_state()
         self.setup_market_feed()
