@@ -23,15 +23,24 @@ def main():
         print("Error: DHAN_CLIENT_ID and DHAN_ACCESS_TOKEN environment variables are required.")
         return
 
-    stock_name = input("Enter the stock name (e.g., 'HDFCBANK'): ")
-    symbol = stock_info.fetch_security_id_by_name(stock_name, 'EQUITY')[1][0]
-    quantity = get_user_input("Enter quantity: ", int)
-    top_price = get_user_input("Enter the top price: ", float)
-    bottom_price = get_user_input("Enter the bottom price: ", float)
-    grid_size = get_user_input("Enter the grid size: ", float)
-    max_grid_levels = get_user_input("Enter the maximum number of grid levels: ", int)
-    target_points = get_user_input("Enter the target points (or press Enter for None): ", float) if input("Do you have target points? (y/n): ").lower() == 'y' else None
+    # stock_name = input("Enter the stock name (e.g., 'HDFCBANK'): ")
+    # symbol = stock_info.fetch_security_id_by_name(stock_name, 'EQUITY')[1][0]
+    # quantity = get_user_input("Enter quantity: ", int)
+    # top_price = get_user_input("Enter the top price: ", float)
+    # bottom_price = get_user_input("Enter the bottom price: ", float)
+    # grid_size = get_user_input("Enter the grid size: ", float)
+    # max_grid_levels = get_user_input("Enter the maximum number of grid levels: ", int)
+    # target_points = get_user_input("Enter the target points (or press Enter for None): ", float) if input("Do you have target points? (y/n): ").lower() == 'y' else None
 
+    stock_name = "RELIANCE"
+    symbol = stock_info.fetch_security_id_by_name(stock_name, 'EQUITY')[1][0]
+    quantity = 1
+    top_price = 1900.0
+    bottom_price = 1800.0
+    grid_size = 10.0
+    max_grid_levels = 100
+    target_points = None
+    
     # Store the inputs in a dictionary
     config = {
         "client_id": client_id,
