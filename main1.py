@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import json
 from main import GridTradingBot
 import stock_info_lookup as stock_info  # Assuming this module fetches security ID by name
+from keep_alive import keep_alive  # Import keep_alive function
 
 # Load environment variables from .env file
 # load_dotenv()
@@ -63,4 +64,5 @@ def main():
     bot.monitor_price_and_trade()
 
 if __name__ == "__main__":
+    keep_alive()  # Start the keep-alive server
     main()
