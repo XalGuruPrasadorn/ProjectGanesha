@@ -1,8 +1,11 @@
-
-import subprocess
+import os
+from dotenv import load_dotenv
 import json
 from main import GridTradingBot
 import stock_info_lookup as stock_info  # Assuming this module fetches security ID by name
+
+# Load environment variables from .env file
+load_dotenv()
 
 def get_user_input(prompt, cast_type=str):
     while True:
@@ -12,8 +15,13 @@ def get_user_input(prompt, cast_type=str):
             print(f"Invalid input. Please enter a valid {cast_type.__name__} value.")
 
 def main():
-    client_id = "1105337404"
-    access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzM1NDgzODIyLCJ0b2tlbkNvbnN1bWVyVHlwZSI6IlNFTEYiLCJ3ZWJob29rVXJsIjoiIiwiZGhhbkNsaWVudElkIjoiMTEwNTMzNzQwNCJ9.A6eMs0kbqrE12-bLFZCnlBEV4iSRKB3H1_T61RNpsXl-OzAGRoG1G-XTRCLgKa2hz8ehZVGYaFNAIb3nrDtWWg"
+    client_id = os.getenv("DHAN_CLIENT_ID")
+    access_token = os.getenv("DHAN_ACCESS_TOKEN")
+    
+    if not client_id or not access_token:
+        print("Error: DHAN_CLIENT_ID and DHAN_ACCESS_TOKEN environment variables are required.")
+        return
+
     stock_name = input("Enter the stock name (e.g., 'HDFCBANK'): ")
     symbol = stock_info.fetch_security_id_by_name(stock_name, 'EQUITY')[1][0]
     quantity = get_user_input("Enter quantity: ", int)
@@ -37,7 +45,6 @@ def main():
         "target_points": target_points,
     }
 
-
     # Create the bot instance
     bot = GridTradingBot(
         client_id=config['client_id'],
@@ -50,12 +57,10 @@ def main():
         max_grid_levels=config['max_grid_levels'],
         target_points=config.get('target_points'),
     )
-    
+
     # Start monitoring and trading
     print("Starting the Grid Trading Bot...")
     bot.monitor_price_and_trade()
 
 if __name__ == "__main__":
     main()
-
-
