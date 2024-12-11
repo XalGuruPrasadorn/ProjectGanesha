@@ -5,7 +5,7 @@ from main import GridTradingBot
 import stock_info_lookup as stock_info  # Assuming this module fetches security ID by name
 
 # Load environment variables from .env file
-load_dotenv()
+# load_dotenv()
 
 def get_user_input(prompt, cast_type=str):
     while True:
