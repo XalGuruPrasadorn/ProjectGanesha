@@ -55,11 +55,11 @@ def fetch_company_name_by_id(security_id, instrument_type=None):
         print(f"No company found for security ID {security_id}")
     return results
 
-company_name = 'HDFCBANK'
+# company_name = 'HDFCBANK'
 # security_id = '1333' #'2885'
-instrument_type = 'EQUITY'
+# instrument_type = 'EQUITY'
 
-print(get_security_id_by_name(company_name, instrument_type))
+# print(get_security_id_by_name(company_name, instrument_type))
 # print(get_security_name_by_id(security_id, instrument_type))
 # print(fetch_security_id_by_name(company_name, instrument_type)[1][0])
 # print(fetch_company_name_by_id(security_id, instrument_type)[0][0])
